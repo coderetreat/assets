@@ -21,7 +21,7 @@
 #  rasterized versions and then will force `make all` to re-create them.
 
 # Create all derived formats using the recipes below
-all: clean pdf png
+all: pdf png
 
 # clean is .PHONY because it doesn't create a file.
 #  it will delete all derived files. Usually you won't need this.
@@ -35,7 +35,7 @@ clean:
 
 
 pdf: pdf/logo.pdf pdf/logo-with-slogan.pdf
-png: png/logo.png png/logo-160x.png png/logo-300x.png png/logo-with-slogan.png png/logo-with-slogan-160x.png png/logo-with-slogan-300x.png
+png: png/logo.png png/logo-600x.png png/logo-300x.png png/logo-with-slogan.png png/logo-with-slogan-600x.png png/logo-with-slogan-300x.png
 
 # Create a PDF version of the logo
 #
@@ -45,12 +45,12 @@ png: png/logo.png png/logo-160x.png png/logo-300x.png png/logo-with-slogan.png p
 pdf/%.pdf: svg/%.svg
 	inkscape -z -A $@ $<
 
-# Create the logo as a PNG at different resolutions (300dpi, 160x160px, 300x300px)
+# Create the logo as a PNG at different resolutions (300dpi, 600x, 300x)
 png/%.png: svg/%.svg
 	inkscape -z -e $@ -d 300 $<
 
-png/%-160x.png: svg/%.svg
-	inkscape -z -e $@ -w 160 $<
+png/%-600x.png: svg/%.svg
+	inkscape -z -e $@ -w 600 $<
 
 png/%-300x.png: svg/%.svg
 	inkscape -z -e $@ -w 300 $<
